@@ -11,18 +11,18 @@ interface RandomRecipeModalProps {
 }
 
 const ROLLING_NAMES = [
-  "Spicy Garlic Shrimp Scampi",
-  "Creamy Tuscan Chicken Pasta",
-  "Fluffy Blueberry Buttermilk Pancakes",
-  "Ultimate Triple Cheese Pizza",
-  "Classic French Onion Soup",
-  "Decadent Chocolate Lava Cake",
-  "Crispy Avocado Quinoa Salad",
-  "Zesty Lemon Butter Salmon",
-  "Traditional Beef Bourguignon",
-  "Slow Cooked Pork Carnitas Tacos",
-  "Sweet Mango Sticky Rice",
-  "Authentic Pad Thai noodles"
+  "South Indian Masala Dosa",
+  "Punjabi Amritsari Chole Bhature",
+  "Gujarati Khaman Dhokla",
+  "Mumbai Vada Pav",
+  "Rajasthani Dal Baati Churma",
+  "Kashmiri Shahi Dum Aloo",
+  "Bengali Sweet Sandesh",
+  "Goan Veg Coconut Curry",
+  "Assamese Black Lentil Khar",
+  "Hyderabadi Vegetable Dum Biryani",
+  "Indo-Chinese Crispy Gobi Manchurian",
+  "Comforting Moong Dal Khichdi"
 ];
 
 export const RandomRecipeModal: React.FC<RandomRecipeModalProps> = ({

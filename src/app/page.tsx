@@ -18,7 +18,7 @@ const CATEGORIES = [
   { name: "Healthy", icon: "🥑", bg: "bg-blue-50 text-[#2563EB]" },
   { name: "Quick Meals", icon: "⏱️", bg: "bg-green-50 text-[#22C55E]" },
   { name: "Traditional", icon: "🍲", bg: "bg-blue-50 text-[#2563EB]" },
-  { name: "International", icon: "🍣", bg: "bg-green-50 text-[#22C55E]" },
+  { name: "International", icon: "🌐", bg: "bg-green-50 text-[#22C55E]" },
 ];
 
 const FEATURES = [
