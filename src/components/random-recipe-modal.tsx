@@ -61,7 +61,10 @@ export const RandomRecipeModal: React.FC<RandomRecipeModalProps> = ({
         await new Promise((resolve) => setTimeout(resolve, delay));
 
         if (!response.ok) {
-          throw new Error(data.error || "Failed to fetch a random recipe");
+          throw new Error(data?.error || "Failed to fetch a random recipe");
+        }
+        if (!data) {
+          throw new Error("No recipe data returned from the server.");
         }
         setRecipe(data);
       } catch (err: any) {
@@ -141,59 +144,63 @@ export const RandomRecipeModal: React.FC<RandomRecipeModalProps> = ({
               transition={{ type: "spring", stiffness: 100 }}
               className="w-full flex flex-col items-center text-center gap-4"
             >
-              {/* Loaded Recipe Card Showcase */}
-              <div className="w-full bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden p-5 flex flex-col items-center gap-4">
-                {recipe.image_url && (
-                  <img
-                    src={recipe.image_url}
-                    alt={recipe.name}
-                    className="w-full h-44 object-cover rounded-xl shadow-sm"
-                  />
-                )}
-                <div className="flex flex-col gap-1 items-center">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 text-xs font-bold bg-blue-50 text-[#2563EB] rounded-full uppercase tracking-wider">
-                      {recipe.category}
-                    </span>
-                    <span className={`px-2.5 py-0.5 text-xs font-bold rounded-full uppercase tracking-wider ${
-                      recipe.difficulty === "Easy"
-                        ? "bg-green-50 text-[#22C55E]"
-                        : recipe.difficulty === "Medium"
-                        ? "bg-amber-50 text-amber-600"
-                        : "bg-red-50 text-red-600"
-                    }`}>
-                      {recipe.difficulty}
-                    </span>
+              {recipe && (
+                <>
+                  {/* Loaded Recipe Card Showcase */}
+                  <div className="w-full bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden p-5 flex flex-col items-center gap-4">
+                    {recipe.image_url && (
+                      <img
+                        src={recipe.image_url}
+                        alt={recipe.name}
+                        className="w-full h-44 object-cover rounded-xl shadow-sm"
+                      />
+                    )}
+                    <div className="flex flex-col gap-1 items-center">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-0.5 text-xs font-bold bg-blue-50 text-[#2563EB] rounded-full uppercase tracking-wider">
+                          {recipe.category}
+                        </span>
+                        <span className={`px-2.5 py-0.5 text-xs font-bold rounded-full uppercase tracking-wider ${
+                          recipe.difficulty === "Easy"
+                            ? "bg-green-50 text-[#22C55E]"
+                            : recipe.difficulty === "Medium"
+                            ? "bg-amber-50 text-amber-600"
+                            : "bg-red-50 text-red-600"
+                        }`}>
+                          {recipe.difficulty}
+                        </span>
+                      </div>
+                      <h4 className="text-xl font-extrabold text-[#0F172A] mt-2">{recipe.name}</h4>
+                      <p className="text-sm text-slate-500 line-clamp-2 mt-1 px-4 leading-relaxed">
+                        {recipe.description}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center justify-center gap-6 text-slate-500 text-xs font-bold pt-2 border-t border-slate-200/60 w-full">
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="h-4 w-4 text-[#2563EB]" />
+                        {(recipe.preparation_time || 0) + (recipe.cooking_time || 0)} mins
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Utensils className="h-4 w-4 text-[#22C55E]" />
+                        {recipe.cuisine}
+                      </span>
+                    </div>
                   </div>
-                  <h4 className="text-xl font-extrabold text-[#0F172A] mt-2">{recipe.name}</h4>
-                  <p className="text-sm text-slate-500 line-clamp-2 mt-1 px-4 leading-relaxed">
-                    {recipe.description}
-                  </p>
-                </div>
 
-                <div className="flex items-center justify-center gap-6 text-slate-500 text-xs font-bold pt-2 border-t border-slate-200/60 w-full">
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="h-4 w-4 text-[#2563EB]" />
-                    {recipe.preparation_time + recipe.cooking_time} mins
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Utensils className="h-4 w-4 text-[#22C55E]" />
-                    {recipe.cuisine}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 w-full mt-2">
-                <Button variant="outline" className="flex-1 rounded-xl" onClick={onClose}>
-                  Cancel
-                </Button>
-                <Link href={`/recipes/${recipe.id}`} className="flex-1" onClick={onClose}>
-                  <Button variant="success" className="w-full rounded-xl bg-[#22C55E] hover:bg-[#16A34A] gap-2">
-                    View Recipe
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
+                  <div className="flex items-center gap-3 w-full mt-2">
+                    <Button variant="outline" className="flex-1 rounded-xl" onClick={onClose}>
+                      Cancel
+                    </Button>
+                    <Link href={`/recipes/${recipe.id}`} className="flex-1" onClick={onClose}>
+                      <Button variant="success" className="w-full rounded-xl bg-[#22C55E] hover:bg-[#16A34A] gap-2">
+                        View Recipe
+                        <ArrowRight className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </div>
+                </>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

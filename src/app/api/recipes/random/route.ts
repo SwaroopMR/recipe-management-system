@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: countError.message }, { status: 500 });
     }
 
-    if (count === null || count === 0) {
+    if (count === null || count === undefined || count === 0 || isNaN(count)) {
       return NextResponse.json({ error: "No recipes available in the vault yet" }, { status: 404 });
     }
 
