@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F8FAFC;
-  --foreground: #0F172A;
+  --background: #EFF6FF; /* Pastel light blue background */
+  --foreground: #1E3A8A; /* Deep blue text */
   
   --primary-blue: #2563EB;
   --secondary-blue: #1D4ED8;
   --primary-green: #22C55E;
   --secondary-green: #16A34A;
-  --white: #FFFFFF;
-  --light-gray: #F8FAFC;
-  --dark-text: #0F172A;
+  --white: #F0FDF4; /* Pastel light green instead of white */
+  --light-gray: #EFF6FF; /* Pastel light blue instead of gray */
+  --dark-text: #1E3A8A; /* Deep blue text instead of black/slate */
 
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --card-border: rgba(37, 99, 235, 0.08);
+  --card-bg: rgba(240, 253, 244, 0.9); /* Pastel green background for glass cards */
+  --card-border: rgba(37, 99, 235, 0.12);
 }
 
 @theme inline {
@@ -29,7 +29,98 @@
   --color-dark-text: var(--dark-text);
   --color-card-bg: var(--card-bg);
   --color-card-border: var(--card-border);
+
+  /* Override standard neutral colors to restrict palette to blue & green only */
+  --color-white: #F0FDF4; /* Very light green */
+  --color-black: #064E3B; /* Very dark green */
+
+  /* Map all slate and neutral colors to shades of green and blue */
+  --color-slate-50: #F0FDF4;
+  --color-slate-100: #DCFCE7;
+  --color-slate-200: #BBF7D0;
+  --color-slate-300: #86EFAC;
+  --color-slate-400: #4ADE80;
+  --color-slate-500: #22C55E;
+  --color-slate-600: #16A34A;
+  --color-slate-700: #15803D;
+  --color-slate-800: #166534;
+  --color-slate-900: #064E3B;
+  --color-slate-950: #022C22;
+
+  --color-gray-50: #EFF6FF;
+  --color-gray-100: #DBEAFE;
+  --color-gray-200: #BFDBFE;
+  --color-gray-300: #93C5FD;
+  --color-gray-400: #60A5FA;
+  --color-gray-500: #3B82F6;
+  --color-gray-600: #2563EB;
+  --color-gray-700: #1D4ED8;
+  --color-gray-800: #1E40AF;
+  --color-gray-900: #1E3A8A;
+  --color-gray-950: #172554;
+
+  --color-zinc-50: #F0FDF4;
+  --color-zinc-100: #DCFCE7;
+  --color-zinc-200: #BBF7D0;
+  --color-zinc-300: #86EFAC;
+  --color-zinc-400: #4ADE80;
+  --color-zinc-500: #22C55E;
+  --color-zinc-600: #16A34A;
+  --color-zinc-700: #15803D;
+  --color-zinc-800: #166534;
+  --color-zinc-900: #064E3B;
+  --color-zinc-950: #022C22;
+
+  --color-neutral-50: #EFF6FF;
+  --color-neutral-100: #DBEAFE;
+  --color-neutral-200: #BFDBFE;
+  --color-neutral-300: #93C5FD;
+  --color-neutral-400: #60A5FA;
+  --color-neutral-500: #3B82F6;
+  --color-neutral-600: #2563EB;
+  --color-neutral-700: #1D4ED8;
+  --color-neutral-800: #1E40AF;
+  --color-neutral-900: #1E3A8A;
+  --color-neutral-950: #172554;
+
+  --color-stone-50: #F0FDF4;
+  --color-stone-100: #DCFCE7;
+  --color-stone-200: #BBF7D0;
+  --color-stone-300: #86EFAC;
+  --color-stone-400: #4ADE80;
+  --color-stone-500: #22C55E;
+  --color-stone-600: #16A34A;
+  --color-stone-700: #15803D;
+  --color-stone-800: #166534;
+  --color-stone-900: #064E3B;
+  --color-stone-950: #022C22;
+  
+  /* Map red warnings to a distinct warm forest shade */
+  --color-red-500: #16A34A;
+  --color-red-600: #15803D;
+  --color-red-200: #BBF7D0;
 }
+
+/* Force hardcoded Tailwind custom color hex overrides */
+.text-\[\#0F172A\], .text-\[\#0f172a\] {
+  color: var(--foreground) !important;
+}
+.bg-\[\#F8FAFC\], .bg-\[\#f8fafc\] {
+  background-color: var(--background) !important;
+}
+.bg-\[\#0F172A\], .bg-\[\#0f172a\] {
+  background-color: #064E3B !important; /* deep forest green overlay */
+}
+.border-\[\#F8FAFC\], .border-\[\#f8fafc\] {
+  border-color: var(--background) !important;
+}
+.focus\:border-\[\#2563EB\]:focus {
+  border-color: var(--primary-blue) !important;
+}
+.focus\:ring-blue-100:focus {
+  --tw-ring-color: rgba(37, 99, 235, 0.15) !important;
+}
+
 
 body {
   background-color: var(--background);
